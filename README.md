@@ -1,6 +1,6 @@
 <h1>ExpNo 5 : Implement Simple Hill Climbing Algorithm</h1> 
-<h3>Name:             </h3>
-<h3>Register Number:             </h3>
+<h3>Name:    Arjun K         </h3>
+<h3>Register Number:   212224040028          </h3>
 <H3>Aim:</H3>
 <p>Implement Simple Hill Climbing Algorithm and Generate a String by Mutating a Single Character at each iteration </p>
 <h2> Theory: </h2>
@@ -59,3 +59,67 @@ Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 0  Solution :  Artificial Intelligence<br>
+
+<h2>Program:</h2>
+
+```
+import random
+import string
+
+def generate_random_solution(answer):
+    l = len(answer)                                                                # Find the length of the answer
+    return [random.choice(string.printable) for _ in range(l)]
+
+def evaluate(solution, answer):
+    print(solution)
+    target = list(answer)
+    diff = 0
+
+    for i in range(len(target)):
+        s = solution[i]
+        t = target[i]
+
+        diff += abs(ord(s) - ord(t))
+
+    return diff
+
+def mutate_solution(solution):
+    ind = random.randint(0, len(solution) - 1)
+    solution[ind] = random.choice(string.printable)
+    return solution
+
+
+
+def SimpleHillClimbing():
+    answer = input("Enter the String:")
+
+    best = generate_random_solution(answer)
+    best_score = evaluate(best, answer)
+
+    while True:
+        print("Score:", best_score, " Solution:", "".join(best))
+
+        if best_score == 0:
+            print("\nTarget String Found!")
+            break
+
+        new_solution = mutate_solution(list(best))
+        score = evaluate(new_solution, answer)
+
+        if score < best_score:
+            best = new_solution
+            best_score = score
+
+SimpleHillClimbing()
+
+```
+
+
+<h2>Output:</h2>
+
+<img width="271" height="497" alt="684401509-1202a1ec-c78e-4ffd-9509-2bb92698847c" src="https://github.com/user-attachments/assets/b42594d5-8a02-41d2-9a36-c3a1f76b8a77" />
+
+
+<h2>Result:</h2>
+
+Therefore, the Simple Hill Climb Algorithm Implemented successfully.
